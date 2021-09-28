@@ -1,16 +1,13 @@
-# write fibonacci series up to n
+# write a power function
 
-def fibnocci(n):
-    x = 0
-    y = 1
+def power(x, e):
+    res = 1
 
-    fibs = []
+    for i in range(e):
+        res = res * x
 
-    while y < n:
-        fibs.append(y)
-        x, y = y, x + y
-
-    return fibs
+    return res
 
 
-print(fibnocci(5))
+print(power(2, 4))
+print(power(5, 2))
