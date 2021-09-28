@@ -4,8 +4,8 @@ import os
 from ast_graph import ASTGraph
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 ast_graph.py <filename>")
+    if len(sys.argv) < 3:
+        print("Usage: python3 ast_graph.py <subject_filename> [<filename>]")
         exit(1)
 
     filename = sys.argv[1]
@@ -17,7 +17,23 @@ if __name__ == "__main__":
     graph = ASTGraph(filename)
     graph.create_graph()
 
-    adjacency_matrix = graph.create_adjacency_matrix()
-
     print(graph)
-    print(str(adjacency_matrix))
+
+    print("\n\n")
+
+    other_filename = sys.argv[2]
+
+    if not os.path.isfile(other_filename):
+        print("File not found: " + other_filename)
+        exit(1)
+
+    other_graph = ASTGraph(other_filename)
+    other_graph.create_graph()
+
+    print(other_graph)
+
+    print("\n\n")
+
+    print("Similarity: " + str(graph.compare_graphs(other_graph)))
+
+    # print(str(adjacency_matrix))
