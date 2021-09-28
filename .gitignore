@@ -1,8 +1,8 @@
 # image files
 *.png
 
+# cache files
+*.pyc
+
 # output directory
 /output
-
-# cache directory
-/__pycache__
