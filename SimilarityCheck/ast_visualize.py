@@ -3,6 +3,7 @@ import sys
 import os
 import pydot
 import astor
+import subprocess
 
 
 class ASTVisalize:
@@ -100,10 +101,10 @@ if __name__ == '__main__':
 
     ast_graph = ASTVisalize(file.read())
 
-    ast_graph.create_graph()
-    ast_graph.save_graph('ast_graph.png')
+    # ast_graph.create_graph()
+    # ast_graph.save_graph('ast_graph.png')
 
-    # ast_graph.create_simplified_graph()
+    ast_graph.create_simplified_graph()
     # ast_graph.save_dot('ast_graph.dot')
 
     # ast_graph.save_dot('ast_graph_simplified.dot')
