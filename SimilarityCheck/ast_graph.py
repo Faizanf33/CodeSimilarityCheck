@@ -1,6 +1,7 @@
 import os
 import sys
 import ast
+import numpy as np
 
 
 class ASTGraph:
@@ -49,36 +50,30 @@ class ASTGraph:
                 pass
 
     def create_adjacency_matrix(self):
-        ...
-        # create adjacency matrix
-        # matrix = []
+        # create adjacency matrix using numpy
+        adjacency_matrix = np.zeros(
+            (len(self.graph), len(self.graph)), dtype=int)
 
-        # # create rows
-        # for i in range(len(self.graph)):
-        #     matrix.append([])
+        # create list of nodes
+        nodes = list(self.graph.keys())
+        # nodes.sort()
 
-        #     # create columns
-        #     for j in range(len(self.graph)):
-        #         matrix[i].append(0)
+        # fill adjacency matrix for each node
+        for i in range(len(self.graph)):
+            for j in range(len(self.graph)):
+                if nodes[i] in self.graph[nodes[j]]:
+                    adjacency_matrix[i][j] = 1
 
-        # # set adjacency matrix
-        # for key, value in self.graph.items():
-        #     key_index = self.ma.keys().index(key)
+        return adjacency_matrix
 
-        #     for item in value:
-        #         item_index = self.graph.values().index(item)
+    def compare_graphs(self, other_graph):
+        # create adjacency matrices
+        adjacency_matrix_1 = self.create_adjacency_matrix()
+        adjacency_matrix_2 = other_graph.create_adjacency_matrix()
 
-        #         # set edge weight
-        #         matrix[key_index][item_index] = 1
+        # compare adjacency matrices
+        if np.array_equal(adjacency_matrix_1, adjacency_matrix_2):
+            return True
 
-        # return matrix
-
-        # self.adjacency_matrix = {}
-
-        # for node in self.graph:
-        #     self.adjacency_matrix[node] = []
-
-        #     for child in self.graph[node]:
-        #         self.adjacency_matrix[node].append(child)
-
-        # return self.adjacency_matrix
+        else:
+            return False
