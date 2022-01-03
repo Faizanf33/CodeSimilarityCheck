@@ -1,8 +1,5 @@
-# image files
-*.png
-
 # cache files
-*.pyc
+*.pdf
 
 # output directory
 /output
