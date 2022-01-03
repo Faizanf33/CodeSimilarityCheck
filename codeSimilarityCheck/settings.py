@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-iipt$!3b#sa#da+do2+nd628l@7)w(gqzmgf*gte_66pcdp__m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.228.200', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -133,3 +134,7 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = '/media/'
+
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
