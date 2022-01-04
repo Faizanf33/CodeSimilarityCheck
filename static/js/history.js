@@ -80,10 +80,13 @@ function removeList(index) {
   
   showSnackbar('History entry removed', 4000, function() {
     // Insert the removed list back into the history at the same index
-    history.history.splice(index, 0, tempList[0]);
-    tempList = [];
-    updateLSData(HISTORY_KEY, history);
-    createAccordion();
+    if (tempList.length > 0) {
+        history.history.splice(index, 0, tempList[0]);
+        history.history.splice(index, 0, tempList[0]);
+        updateLSData(HISTORY_KEY, history);
+        createAccordion();
+        tempList = [];
+    }
   }, 'Undo', 'chocolate');
   
   updateLSData(HISTORY_KEY, history);
