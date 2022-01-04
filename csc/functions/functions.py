@@ -124,6 +124,7 @@ def generate_report(filename, results):
 
     print("Saved report to {}".format(os.path.join(path, 'pdf')))
 
+    print("Path exists: ", os.path.exists(os.path.join(path, 'pdf')))
     # change working directory to current directory
     os.chdir(current_dir)
 
