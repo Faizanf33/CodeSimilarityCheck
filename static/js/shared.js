@@ -4,7 +4,7 @@ const FILES_KEY = "currentCategoryIndex";
 const HISTORY_KEY = "history";
 
 class FileData {
-    constructor(name, max_index = -1, path='/app/static/') {
+    constructor(name, max_index = -1, path='/static/') {
         this._name = name;
         this._path = path;
         this._max_index = max_index;
