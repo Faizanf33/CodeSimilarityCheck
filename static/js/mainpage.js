@@ -224,15 +224,19 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // response.report is a string encoded in UTF-8 format
-                var blob = new Blob([response.report], {type: "text/plain;charset=utf-8"});
+                // response.report is a string as:
+                // "b'%PDF-1.4\n%\x93\x8c\x8b\x9e ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\...'"
+                // we need to remove the first two characters and the last two characters
+                // to get the actual pdf file
+                var pdf = response.report.substring(2, response.report.length - 2);
+                var blob = new Blob([pdf], {type: "application/pdf"});
 
-                // open a new window with the pdf
-                var a = document.createElement("a");
-                a.href = window.URL.createObjectURL(blob);
-                a.download = filename + ".pdf";
-                window.open(a);
-                
+                // Open the pdf in a new tab
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = files.getFile(i).getFileName('pdf');
+                link.click();
+                                
                 // var relative_filename = files.getFile(i).getFilePath('pdf');            
                 // console.log("Saved file " + filename + " to " + relative_filename);
 
