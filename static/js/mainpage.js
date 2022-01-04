@@ -223,22 +223,15 @@ function save(i) {
                 console.log("success - pdf");
                 console.log(response);
                 saveBtn.innerHTML = inner;
-
-                // responseText.file is file read in binary mode and is a string                
-                var blob = new Blob([response.file], {type: "application/pdf;base64"});
-
-                // open a new window with the PDF file and set the filename.
-                var fileURL = URL.createObjectURL(blob);
-                window.open(fileURL, files.getFile(i).getFileName('pdf'));
                 
-                // var link = document.createElement('a');
-                // link.href = window.URL.createObjectURL(blob);
-                // link.download = files.getFile(i).getFileName('pdf');
-                // link.click();
+                // open a new window with the PDF file and set the filename.
+                // var fileURL = URL.createObjectURL(blob);
+                // window.open(fileURL, files.getFile(i).getFileName('pdf'));
+                
+                var relative_filename = files.getFile(i).getFilePath('pdf');            
+                console.log("Saved file " + filename + " to " + relative_filename);
 
-                // var relative_filename = files.getFile(i).getFilePath('pdf');            
-                // console.log("Saved file " + filename + " to " + relative_filename);
-                // saveFile(relative_filename, i);
+                saveFile(response.success.filepath, i);
 
             } else {
                 console.log("error - pdf");
@@ -256,21 +249,23 @@ function save(i) {
 
 function saveFile(file, i) {
     fetch(file).then(response => response.blob()).then(blob => {
+        var fileURL = URL.createObjectURL(blob);
+        window.open(fileURL, files.getFile(i).getFileName('pdf'));
 
-        var isIE = false || !!document.documentMode;
-        if (isIE) {
-            window.navigator.msSaveBlob(blob, files.getFile(i).getFileName('pdf'));
+        // var isIE = false || !!document.documentMode;
+        // if (isIE) {
+        //     window.navigator.msSaveBlob(blob, files.getFile(i).getFileName('pdf'));
 
-        } else {
-            var url = window.URL || window.webkitURL;
-            var link = url.createObjectURL(blob);
-            var a = document.createElement("a");
-            a.setAttribute("download", files.getFile(i).getFileName('pdf'));
-            a.setAttribute("href", link);
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
+        // } else {
+        //     var url = window.URL || window.webkitURL;
+        //     var link = url.createObjectURL(blob);
+        //     var a = document.createElement("a");
+        //     a.setAttribute("download", files.getFile(i).getFileName('pdf'));
+        //     a.setAttribute("href", link);
+        //     document.body.appendChild(a);
+        //     a.click();
+        //     document.body.removeChild(a);
+        // }
     });
 } 
 
