@@ -224,9 +224,10 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // response.binary_data is the UTF-8 string of the PDF
-                var blob = new Blob([response.binary_data], {type: "application/pdf:charset=utf-8"});
+                // response.report is the UTF-8 string of the PDF
+                var blob = new Blob([response.report], {type: "application/pdf:charset=utf-8"});
 
+                // open the blob in
                 var fileURL = URL.createObjectURL(blob);
                 window.open(fileURL, files.getFile(i).getFileName('pdf'));
                 
