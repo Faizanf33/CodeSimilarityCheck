@@ -226,12 +226,12 @@ function save(i) {
 
 
                 var pdf_binary = _base64ToArrayBuffer(response.success.report);
-                var blob = new Blob([pdf_binary], {type: "application/pdf"});
-
-                // Open blob as pdf file in browser's new tab                
-                var fileURL = URL.createObjectURL(blob);
-                window.open(fileURL);
-
+                // create blob from array buffer of type pdf
+                var pdf_blob = new Blob([pdf_binary], {type: "application/pdf"});
+                // create url from blob 
+                var pdf_url = URL.createObjectURL(pdf_blob);
+                // open url in new tab with name files.getFile(i).getFileName('pdf')
+                window.open(pdf_url, files.getFile(i).getFileName('pdf'));
                                 
                 // var relative_filename = files.getFile(i).getFilePath('pdf');            
                 // console.log("Saved file " + filename + " to " + relative_filename);
