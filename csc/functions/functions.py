@@ -128,12 +128,8 @@ def generate_report(filename, results):
 
     pdf_binary = ""
     # Open the generated report as binary and store it as a 'file' key in the results dictionary
-    try:
-        with open(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf'), 'r') as f:
-            pdf_binary = str(f.read())
-
-    except Exception as e:
-        print(e)
+    with open(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf'), 'rb') as f:
+        pdf_binary = f.read()
 
     # change working directory to current directory
     os.chdir(current_dir)
