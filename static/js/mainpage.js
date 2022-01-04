@@ -200,7 +200,8 @@ function save(i) {
     // Add mdl spinner instead of button and upgrade element
     var saveBtn = document.getElementById('saveBtn' + i);
     saveBtn.innerHTML = '<div class="mdl-spinner mdl-js-spinner is-active" style="background-color: transparent; color:white;"></div>';
-    componentHandler.upgradeElement(saveBtn.querySelector('.mdl-spinner'));
+    componentHandler.upgradeDom();
+    // componentHandler.upgradeElement(saveBtn.querySelector('.mdl-spinner'));
  
     console.log(files.getFile(i).compared_with);
     var request = postRequest(JSON.stringify(files.getFile(i).compared_with), 'text/plain');

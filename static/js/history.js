@@ -67,9 +67,10 @@ function createAccordion() {
                   }              
             });
 
-            componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
+            // componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
                 
         }
+        componentHandler.upgradeDom();
     }
 }
 
