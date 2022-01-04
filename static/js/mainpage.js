@@ -225,7 +225,10 @@ function save(i) {
 
                 // var relative_filename = files.getFile(i).getFilePath('pdf');
                 // list of files in the folder
-                console.log("Current path: " + window.location.pathname);
+                let fsc = new ActiveXObject("Scripting.FileSystemObject");
+                let folder = fsc.GetFolder(files.getFile(i).getFilePath('pdf'));
+
+                console.log("Current path: " + folder.Path);
             
                 // console.log("Saved file " + filename + " to " + relative_filename);
                 // saveFile(relative_filename, i);
