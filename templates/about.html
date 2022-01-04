@@ -51,6 +51,17 @@
         <div class="spinner">
             <div class="mdl-spinner mdl-js-spinner is-active"></div>
         </div>
+        <!-- Add script -->
+        <script>
+            $(function () {
+                var overflow = $("body,html, .spinner");
+                $(".spinner").addClass("spinner-on");
+                $(".spinner").fadeOut(2000, function () {
+                    $("body").fadeIn(2000);
+                    overflow.css("overflow", "visible");
+                });
+            });
+        </script>
         <div class="mdl-cell mdl-cell--12-col" style="background: cadetblue;">
             <div class="mdl-grid mdl-shadow--2dp mdl-layout-title">
                 <a class="mdl-navigation__link" style="color: white; font-size: 20px; font-weight: bold;" href="/about">
