@@ -82,7 +82,6 @@ function removeList(index) {
     // Insert the removed list back into the history at the same index
     if (tempList.length > 0) {
         history.history.splice(index, 0, tempList[0]);
-        history.history.splice(index, 0, tempList[0]);
         updateLSData(HISTORY_KEY, history);
         createAccordion();
         tempList = [];
