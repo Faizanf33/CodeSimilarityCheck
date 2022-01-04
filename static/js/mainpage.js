@@ -225,12 +225,14 @@ function save(i) {
 
                 // responseText.file is a binary string
                 var blob = new Blob([response.file], {type: "application/pdf"});
-                // open this pdf in a new tab
+                // open a new window with the PDF file.
+                var fileURL = URL.createObjectURL(blob);
+                window.open(fileURL);
                 
-                var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = files.getFile(i).getFileName('pdf');
-                link.click();
+                // var link = document.createElement('a');
+                // link.href = window.URL.createObjectURL(blob);
+                // link.download = files.getFile(i).getFileName('pdf');
+                // link.click();
 
                 // var relative_filename = files.getFile(i).getFilePath('pdf');            
                 // console.log("Saved file " + filename + " to " + relative_filename);
