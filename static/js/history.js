@@ -140,7 +140,7 @@ function createProgressBars(data) {
             function() {
                 this.MaterialProgress.setProgress(max_index);
         });
-        componentHandler.upgradeElement('.mdl-progress');
+        componentHandler.upgradeElement(progress);
         componentHandler.upgradeDom();
     }
 }
