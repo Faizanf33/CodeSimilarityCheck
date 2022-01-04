@@ -130,7 +130,7 @@ def generate_report(filename, results):
     pdf_binary = ""
     # Read the generated PDF file
     with open(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf'), 'rb') as f:
-        pdf_binary = str(b64encode(f.read()))
+        pdf_binary = b64encode(f.read()).decode('utf-8')
 
     # change working directory to current directory
     os.chdir(current_dir)
