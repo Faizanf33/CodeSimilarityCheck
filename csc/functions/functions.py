@@ -124,14 +124,9 @@ def generate_report(filename, results):
 
     print("Saved report to {}".format(os.path.join(path, 'pdf')))
 
-    # If file exists open it in new tab of current browser for windows
-    if os.name == 'nt':
-        os.startfile(os.path.join(
-            path, 'pdf', filename.split('.')[0] + '.pdf'))
-
-    else:
-        # for mac and linux
-        os.system("open " + os.path.join(path, 'pdf',
+    # If file exists open it in new tab of current browser
+    if os.path.exists(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf')):
+        os.system('start ' + os.path.join(path, 'pdf',
                   filename.split('.')[0] + '.pdf'))
 
     # # change working directory to current directory
