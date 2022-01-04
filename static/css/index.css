@@ -17,6 +17,34 @@
   padding-right: 30px;
 }
 
+html,
+body,
+.spinner {
+  height: 100%;
+  overflow: hidden;
+}
+
+.mdl-spinner {
+  height: 100px;
+  width: 100px;
+}
+
+p {
+  padding: 0% 5% 0%;
+}
+
+.spinner {
+  position: relative;
+  /* top:100px; */
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-on {
+  display: flex;
+}
+
 .accordion {
   background-color: cadetblue;
   color: white;
