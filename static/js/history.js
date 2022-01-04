@@ -186,7 +186,7 @@ function saveFile(hi, i) {
                 console.log("success - pdf");
                 saveBtn.innerHTML = inner;
 
-                var pdf_name = files.getFile(i).getFileName('pdf');
+                var pdf_name = data.getFile(i).getFileName('pdf');
 
                 saveReport(response.success.report, pdf_name);
                                 
