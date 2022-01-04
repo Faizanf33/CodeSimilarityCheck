@@ -223,15 +223,17 @@ function save(i) {
                 console.log("success - pdf");
                 console.log(response);
                 saveBtn.innerHTML = inner;
-                
-                // open a new window with the PDF file and set the filename.
-                // var fileURL = URL.createObjectURL(blob);
-                // window.open(fileURL, files.getFile(i).getFileName('pdf'));
-                
-                var relative_filename = files.getFile(i).getFilePath('pdf');            
-                console.log("Saved file " + filename + " to " + relative_filename);
 
-                saveFile(response.success.filepath, i);
+                // response.binary_data is the UTF-8 string of the PDF
+                var blob = new Blob([response.binary_data], {type: "application/pdf:charset=utf-8"});
+
+                var fileURL = URL.createObjectURL(blob);
+                window.open(fileURL, files.getFile(i).getFileName('pdf'));
+                
+                // var relative_filename = files.getFile(i).getFilePath('pdf');            
+                // console.log("Saved file " + filename + " to " + relative_filename);
+
+                // saveFile(response.success.filepath, i);
 
             } else {
                 console.log("error - pdf");
