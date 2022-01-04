@@ -5,6 +5,7 @@ from csc.functions.custom_exception import CustomException
 
 from multiprocessing import Process
 from json import dumps
+from base64 import b64encode
 
 
 def handle_uploaded_file(f):
@@ -127,9 +128,11 @@ def generate_report(filename, results):
     print("Saved report to {}".format(os.path.join(path, 'pdf')))
 
     pdf_binary = ""
-    # Open the generated report as binary and store it as a 'file' key in the results dictionary
+    # Read the generated PDF file
     with open(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf'), 'rb') as f:
-        pdf_binary = str(f.read())
+        pdf_binary = f.read()
+        # store in a form that can be read by javascript blob object
+        pdf_binary = "data:application/pdf;base64," + str(b64encode(pdf_binary))
 
     # change working directory to current directory
     os.chdir(current_dir)

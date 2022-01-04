@@ -224,14 +224,12 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // response.report is a string as:
-                // "b'%PDF-1.4\n%\x93\x8c\x8b\x9e ReportLab Generated PDF document http://www.reportlab.com\n1 0 obj\...'"
-                // we need to remove the first two characters and the last two characters
-                // to get the actual pdf file
-                var pdf = response.report.substring(2, response.report.length - 2);
-                var blob = new Blob([pdf], {type: "application/pdf"});
+                // response.success.report is exactly like this:
+                // "data:application/pdf;base64," + str(b64encode(pdf_binary))
+                // so we can use it to create a blob and download it
+                var blob = new Blob([response.success.report], {type: "application/pdf"});
 
-                // Open the pdf in a new tab
+                // Open the blob in a new window as a pdf
                 var link = document.createElement('a');
                 link.href = window.URL.createObjectURL(blob);
                 link.download = files.getFile(i).getFileName('pdf');
