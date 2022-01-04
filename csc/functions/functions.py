@@ -130,9 +130,7 @@ def generate_report(filename, results):
     pdf_binary = ""
     # Read the generated PDF file
     with open(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf'), 'rb') as f:
-        pdf_binary = f.read()
-        # store in a form that can be read by javascript blob object
-        pdf_binary = str(b64encode(pdf_binary))
+        pdf_binary = b64encode(f.read())
 
     # change working directory to current directory
     os.chdir(current_dir)

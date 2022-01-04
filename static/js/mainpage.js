@@ -224,15 +224,8 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                var binary = atob(base64str.replace(/s/g, ''));
-                var len = binary.length;
-                var buffer = new ArrayBuffer(len);
-                var view = new Uint8Array(buffer);
-                for (var i = 0; i < len; i++) {
-                    view[i] = binary.charCodeAt(i);
-                }
-                
-                var pdf_binary = atob(response.success.report);
+
+                var pdf_binary = _base64ToArrayBuffer(response.success.report);
                 var blob = new Blob([pdf_binary], {type: "application/pdf"});
 
                 // Open blob as pdf file in browser's new tab                
@@ -258,6 +251,15 @@ function save(i) {
     };
 }
 
+function _base64ToArrayBuffer(base64) {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
 
 function saveFile(file, i) {
     fetch(file).then(response => response.blob()).then(blob => {
