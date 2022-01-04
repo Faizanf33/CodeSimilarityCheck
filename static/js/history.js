@@ -67,10 +67,9 @@ function createAccordion() {
                   }              
             });
 
-            // componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
-                
+            componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
+            componentHandler.upgradeDom();                
         }
-        componentHandler.upgradeDom();
     }
 }
 
@@ -141,7 +140,8 @@ function createProgressBars(data) {
             function() {
                 this.MaterialProgress.setProgress(max_index);
         });
-        componentHandler.upgradeElement(progress);
+        componentHandler.upgradeElement('.mdl-progress');
+        componentHandler.upgradeDom();
     }
 }
 
