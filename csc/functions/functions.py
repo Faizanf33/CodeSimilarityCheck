@@ -126,6 +126,10 @@ def generate_report(filename, results):
 
     print("Saved report to {}".format(os.path.join(path, 'pdf')))
 
+    # Open the generated report as binary and store it as a 'file' key in the results dictionary
+    with open(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf'), 'rb') as f:
+        results['file'] = f.read()
+
     # change working directory to current directory
     os.chdir(current_dir)
 

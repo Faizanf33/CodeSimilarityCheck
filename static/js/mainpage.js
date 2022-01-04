@@ -223,13 +223,16 @@ function save(i) {
                 console.log("success - pdf");
                 saveBtn.innerHTML = inner;
 
-                // var relative_filename = files.getFile(i).getFilePath('pdf');
-                // list of files in the folder
-                let fsc = new ActiveXObject("Scripting.FileSystemObject");
-                let folder = fsc.GetFolder(files.getFile(i).getFilePath('pdf'));
+                // responseText.file is a file read as binary
+                var blob = new Blob([response.responseText.file], {type: "application/pdf"});
+                // open this pdf in a new tab
+                
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = files.getFile(i).getFileName('pdf');
+                link.click();
 
-                console.log("Current path: " + folder.Path);
-            
+                // var relative_filename = files.getFile(i).getFilePath('pdf');            
                 // console.log("Saved file " + filename + " to " + relative_filename);
                 // saveFile(relative_filename, i);
 
