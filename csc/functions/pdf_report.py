@@ -64,6 +64,8 @@ class PDFReport():
         if not os.path.exists(self.out_dir):
             os.makedirs(self.out_dir)
 
+        print("Pdf path: {}".format(self.out_file))
+
         self.done = False
 
     def get_target_pairs(self, target: list, pair_len: int) -> list:
