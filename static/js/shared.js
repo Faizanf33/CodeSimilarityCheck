@@ -425,12 +425,14 @@ if (checkLSData(HISTORY_KEY))
     history.fromData(retrieveLSData(HISTORY_KEY));
 }
 
-// Display spinner on page load
-$(function() {
-    var overflow = $('body,html, .spinner');
+// Display spinner on page until data is loaded
+function displaySpinner() {
+    var overflow = $('body,html,main, .spinner');
     $(".spinner").addClass('spinner-on');
     $(".spinner").fadeOut(2000, function() {
         $("body").fadeIn(2000);
         overflow.css('overflow','visible');
     });
-});
+};
+
+displaySpinner();
