@@ -43,7 +43,7 @@ function uploadFiles() {
 
                     showSnackbar("Invalid Syntax (remove file(s) to continue)", 5000, function() {
                         for (let file of response.error.files)
-                            removeFile(files, files.indexOf(file), false);
+                            removeFile(files.indexOf(file), false);
 
                         createTable(files)
                         return uploadFiles();
