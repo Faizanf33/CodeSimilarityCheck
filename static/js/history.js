@@ -10,6 +10,8 @@ function createAccordion() {
         + '<a href="/">Go to dashboard</a>'
         + '</h5><br>';
 
+        return;
+
     } else {
         for (var i = 0; i < history.length; i++) {
             let inner = '';
@@ -48,6 +50,7 @@ function createAccordion() {
     
         for (var i = 0; i < history.length; i++) {
             createTable(history.history[i].data, i);
+
             document.getElementsByClassName('accordion')[i].addEventListener('click', function() {
                 // get this accordion's index
                 this.classList.toggle('is-active');
@@ -63,6 +66,8 @@ function createAccordion() {
                     panel.style.borderBottom = "3px solid darkseagreen";
                   }              
             });
+
+            componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
                 
         }
     }
