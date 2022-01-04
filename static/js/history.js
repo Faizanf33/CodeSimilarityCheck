@@ -44,7 +44,7 @@ function createAccordion() {
             
             accordion.innerHTML += inner;
             createProgressBars(data);
-            componentHandler.upgradeElement(accordion);
+            // componentHandler.upgradeElement(accordion);
         }
           
     
@@ -67,8 +67,8 @@ function createAccordion() {
                   }              
             });
 
-            componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
-            componentHandler.upgradeDom();                
+            // componentHandler.upgradeElement(document.getElementsByClassName('accordion')[i]);
+            // componentHandler.upgradeDom();                
         }
     }
 }
@@ -142,7 +142,7 @@ function createProgressBars(data) {
         });
         // componentHandler.upgradeElement(progress);
     }
-    // componentHandler.upgradeDom();
+    componentHandler.upgradeDom();
 }
 
 
