@@ -224,12 +224,14 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // response.report is the UTF-8 string of the PDF
-                var blob = new Blob([response.report], {type: "application/pdf:charset=utf-8"});
+                // response.report is a string encoded in UTF-8 format
+                var blob = new Blob([response.report], {type: "text/plain;charset=utf-8"});
 
-                // open the blob in
-                var fileURL = URL.createObjectURL(blob);
-                window.open(fileURL, files.getFile(i).getFileName('pdf'));
+                // open a new window with the pdf
+                var a = document.createElement("a");
+                a.href = window.URL.createObjectURL(blob);
+                a.download = filename + ".pdf";
+                window.open(a);
                 
                 // var relative_filename = files.getFile(i).getFilePath('pdf');            
                 // console.log("Saved file " + filename + " to " + relative_filename);
