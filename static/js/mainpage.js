@@ -221,22 +221,13 @@ function save(i) {
 
             if ('success' in response) {
                 console.log("success - pdf");
-                console.log(response);
                 saveBtn.innerHTML = inner;
 
+                var pdf_name = files.getFile(i).getFileName('pdf');
 
-                var pdf_binary = _base64ToArrayBuffer(response.success.report);
-                // create blob from array buffer of type pdf
-                var pdf_blob = new Blob([pdf_binary], {type: "application/pdf"});
-                // create url from blob 
-                var pdf_url = URL.createObjectURL(pdf_blob);
-                // open url in new tab with name files.getFile(i).getFileName('pdf')
-                window.open(pdf_url, files.getFile(i).getFileName('pdf'));
+                saveReport(response.success.report, pdf_name);
                                 
-                // var relative_filename = files.getFile(i).getFilePath('pdf');            
-                // console.log("Saved file " + filename + " to " + relative_filename);
-
-                // saveFile(response.success.filepath, i);
+                console.log("Saved file: " + pdf_name);
 
             } else {
                 console.log("error - pdf");
@@ -251,38 +242,6 @@ function save(i) {
     };
 }
 
-function _base64ToArrayBuffer(base64) {
-    var binary_string = atob(base64);
-    var len = binary_string.length;
-    var bytes = new Uint8Array(len);
-    for (var i = 0; i < len; i++) {
-        bytes[i] = binary_string.charCodeAt(i);
-    }
-    
-    return bytes.buffer;
-}
-
-function saveFile(file, i) {
-    fetch(file).then(response => response.blob()).then(blob => {
-        var fileURL = URL.createObjectURL(blob);
-        window.open(fileURL, files.getFile(i).getFileName('pdf'));
-
-        // var isIE = false || !!document.documentMode;
-        // if (isIE) {
-        //     window.navigator.msSaveBlob(blob, files.getFile(i).getFileName('pdf'));
-
-        // } else {
-        //     var url = window.URL || window.webkitURL;
-        //     var link = url.createObjectURL(blob);
-        //     var a = document.createElement("a");
-        //     a.setAttribute("download", files.getFile(i).getFileName('pdf'));
-        //     a.setAttribute("href", link);
-        //     document.body.appendChild(a);
-        //     a.click();
-        //     document.body.removeChild(a);
-        // }
-    });
-} 
 
 function removeFile(index, re_create=true) {
     files.splice(index, 1);

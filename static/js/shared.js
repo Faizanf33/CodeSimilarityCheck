@@ -332,6 +332,40 @@ function postRequest(data, contentType='undefined') {
     return request;
 }
 
+function _base64ToArrayBuffer(base64) {
+    var binary_string = atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    
+    return bytes.buffer;
+}
+
+function saveReport(report, filename) {
+    // convert report to array buffer
+    var pdf_binary = _base64ToArrayBuffer(report);
+
+    // create blob from array buffer of type pdf
+    var blob = new Blob([pdf_binary], {type: "application/pdf"});
+
+    var isIE = false || !!document.documentMode;
+    if (isIE) {
+        window.navigator.msSaveBlob(blob, filename);
+
+    } else {
+        var url = window.URL || window.webkitURL;
+        var link = url.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.setAttribute("download", filename);
+        a.setAttribute("href", link);
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);

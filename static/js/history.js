@@ -186,11 +186,11 @@ function saveFile(hi, i) {
                 console.log("success - pdf");
                 saveBtn.innerHTML = inner;
 
-                var relative_filename = data.getFile(i).getFilePath('pdf');
-                var filename = data.getFile(i).getFileName('pdf');
-            
-                console.log("Saved file " + filename + " to " + relative_filename);
-                save(relative_filename, filename);
+                var pdf_name = files.getFile(i).getFileName('pdf');
+
+                saveReport(response.success.report, pdf_name);
+                                
+                console.log("Saved file: " + pdf_name);
 
             } else {
                 console.log("error - pdf");
@@ -203,26 +203,6 @@ function saveFile(hi, i) {
             componentHandler.upgradeElement(saveBtn.querySelector('.mdl-spinner'));            
         }
     };
-}
-
-function save(file, filename) {
-  fetch(file).then(response => response.blob()).then(blob => {
-
-      var isIE = false || !!document.documentMode;
-      if (isIE) {
-          window.navigator.msSaveBlob(blob, filename);
-
-      } else {
-          var url = window.URL || window.webkitURL;
-          var link = url.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.setAttribute("download", filename);
-          a.setAttribute("href", link);
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-      }
-  });
 }
 
 createAccordion();
