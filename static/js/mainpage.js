@@ -221,6 +221,7 @@ function save(i) {
 
             if ('success' in response) {
                 console.log("success - pdf");
+                console.log(response);
                 saveBtn.innerHTML = inner;
 
                 // responseText.file is a binary string
