@@ -1,0 +1,1 @@
+web: gunicorn codeSimilarityCheck.wsgi --log-file -
