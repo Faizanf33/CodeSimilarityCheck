@@ -223,8 +223,8 @@ function save(i) {
                 console.log("success - pdf");
                 saveBtn.innerHTML = inner;
 
-                // responseText.file is a file read as binary
-                var blob = new Blob([response.responseText.file], {type: "application/pdf"});
+                // responseText.file is a binary string
+                var blob = new Blob([response.file], {type: "application/pdf"});
                 // open this pdf in a new tab
                 
                 var link = document.createElement('a');
