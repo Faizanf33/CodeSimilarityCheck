@@ -77,6 +77,8 @@ def generate_report(filename, results):
     print("Current directory: ", current_dir)
 
     path = os.path.join(current_dir, 'static', 'json')
+    if not os.path.exists(path):
+        os.makedirs(path)
 
     targets = []
 
@@ -103,6 +105,9 @@ def generate_report(filename, results):
     path = os.path.join(current_dir, 'static')
 
     os.chdir(path)
+
+    if not os.path.exists('pdf'):
+        os.makedirs('pdf')
 
     print("Generating report for {}".format(filename))
     print("{} targets found".format(len(targets)))

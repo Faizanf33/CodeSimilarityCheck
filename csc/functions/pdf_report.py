@@ -61,8 +61,6 @@ class PDFReport():
 
         self.out_file = out_file
         self.out_dir = out_dir
-        if not os.path.exists(self.out_dir):
-            os.makedirs(self.out_dir)
 
         self.done = False
 
