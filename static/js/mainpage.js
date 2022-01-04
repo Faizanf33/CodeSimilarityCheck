@@ -224,8 +224,8 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // responseText.file is read in binary mode
-                var blob = new Blob([response.file], {type: "application/pdf"});
+                // responseText.file is file read in binary mode and is a string                
+                var blob = new Blob([response.file], {type: "application/pdf;base64"});
 
                 // open a new window with the PDF file and set the filename.
                 var fileURL = URL.createObjectURL(blob);
