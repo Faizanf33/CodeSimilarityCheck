@@ -12,6 +12,8 @@ def handle_uploaded_file(f):
         os.chdir('..')
 
     path = os.path.join(os.getcwd(), 'static', 'dataset')
+    if not os.path.exists(path):
+        os.makedirs(path)
 
     with open(os.path.join(path, f.name), 'wb') as destination:
         for chunk in f.chunks():
