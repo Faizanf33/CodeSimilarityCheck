@@ -19,6 +19,8 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
+        print("File saved to {}".format(os.path.join(path, f.name)))
+
 
 def compare_files():
 
@@ -123,18 +125,6 @@ def generate_report(filename, results):
     p.join()
 
     print("Saved report to {}".format(os.path.join(path, 'pdf')))
-
-    # If file exists open it in new tab of current browser
-    if os.path.exists(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf')):
-        os.system('start ' + os.path.join(path, 'pdf',
-                  filename.split('.')[0] + '.pdf'))
-
-    # # change working directory to current directory
-    # if os.path.exists(os.path.join(path, 'pdf', filename.split('.')[0] + '.pdf')):
-    #     print("File exists")
-
-    #     os.system('open -a "Google Chrome" {}'.format(os.path.join(path,
-    #               'pdf', filename.split('.')[0] + '.pdf')))
 
     # change working directory to current directory
     os.chdir(current_dir)
