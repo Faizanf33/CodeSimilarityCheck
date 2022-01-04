@@ -225,7 +225,7 @@ function save(i) {
                 saveBtn.innerHTML = inner;
 
                 // responseText.file is read in binary mode
-                var blob = new Blob([response.file], {type: "application/pdf"}, filename);
+                var blob = new Blob([response.file], {type: "application/pdf"});
 
                 // open a new window with the PDF file and set the filename.
                 var fileURL = URL.createObjectURL(blob);
