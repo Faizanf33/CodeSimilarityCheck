@@ -227,7 +227,7 @@ function save(i) {
                 // response.success.report is exactly like this:
                 // "data:application/pdf;base64," + str(b64encode(pdf_binary))
                 // so we can use it to create a blob and download it
-                var blob = new Blob([response.success.report], {type: "application/pdf"});
+                var blob = new Blob(response.success.report);
 
                 // Open the blob in a new window as a pdf
                 var link = document.createElement('a');
