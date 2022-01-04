@@ -224,11 +224,12 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // responseText.file is a binary string
-                var blob = new Blob([response.file], {type: "application/pdf"});
-                // open a new window with the PDF file.
+                // responseText.file is read in binary mode
+                var blob = new Blob([response.file], {type: "application/pdf"}, filename);
+
+                // open a new window with the PDF file and set the filename.
                 var fileURL = URL.createObjectURL(blob);
-                window.open(fileURL);
+                window.open(fileURL, files.getFile(i).getFileName('pdf'));
                 
                 // var link = document.createElement('a');
                 // link.href = window.URL.createObjectURL(blob);
