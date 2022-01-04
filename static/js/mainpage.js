@@ -224,16 +224,19 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // response.success.report is exactly like this:
-                // "data:application/pdf;base64," + str(b64encode(pdf_binary))
-                // so we can use it to create a blob and download it
-                var blob = new Blob(response.success.report);
+                // response.success.report was generated in python as
+                // str(b64encode(pdf_binary))
+                // pdf_binary is the binary data of the pdf file
+                // b64encode is a base64 encoding function
+                // str is a string function
 
-                // Open the blob in a new window as a pdf
-                var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = files.getFile(i).getFileName('pdf');
-                link.click();
+                var pdf_binary = atob(response.success.report);
+                var blob = new Blob([pdf_binary], {type: "application/pdf"});
+
+                // Open blob as pdf file in browser's new tab                
+                var fileURL = URL.createObjectURL(blob);
+                window.open(fileURL);
+
                                 
                 // var relative_filename = files.getFile(i).getFilePath('pdf');            
                 // console.log("Saved file " + filename + " to " + relative_filename);
