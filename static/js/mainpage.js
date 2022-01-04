@@ -253,8 +253,9 @@ function save(i) {
 
 function _base64ToArrayBuffer(base64) {
     // remove the character '\' from the base64 string
-    b64Data = b64Data.replace(/^[^,]+,/, '');
-    b64Data = b64Data.replace(/\s/g, '');
+    base64 = base64.replace(/^[^,]+,/, '');
+    base64 = base64.replace(/\s/g, '');
+
     var binary_string = window.atob(base64);
     var len = binary_string.length;
     var bytes = new Uint8Array(len);
