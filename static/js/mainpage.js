@@ -224,12 +224,14 @@ function save(i) {
                 console.log(response);
                 saveBtn.innerHTML = inner;
 
-                // response.success.report was generated in python as
-                // str(b64encode(pdf_binary))
-                // pdf_binary is the binary data of the pdf file
-                // b64encode is a base64 encoding function
-                // str is a string function
-
+                var binary = atob(base64str.replace(/s/g, ''));
+                var len = binary.length;
+                var buffer = new ArrayBuffer(len);
+                var view = new Uint8Array(buffer);
+                for (var i = 0; i < len; i++) {
+                    view[i] = binary.charCodeAt(i);
+                }
+                
                 var pdf_binary = atob(response.success.report);
                 var blob = new Blob([pdf_binary], {type: "application/pdf"});
 
